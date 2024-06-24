@@ -25,7 +25,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $types = Type::all();
+    return view('admin.projects.create', compact('types'));
+    
     }
 
     public function store(Request $request)
@@ -34,6 +36,7 @@ class ProjectController extends Controller
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'type_id' => 'required|exists:types,id',
         ]);
 
         // Genera lo slug automaticamente
@@ -43,6 +46,7 @@ class ProjectController extends Controller
         $project = Project::create($data);
 
         return redirect()->route('admin.projects.show', ['project' => $project->slug])->with('success', 'Progetto creato con successo');
+      
     }
 
 
@@ -60,7 +64,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::all();
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -71,6 +76,7 @@ class ProjectController extends Controller
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'type_id' => 'required|exists:types,id',
         ]);
 
         // Genera un nuovo slug se il titolo è cambiato
