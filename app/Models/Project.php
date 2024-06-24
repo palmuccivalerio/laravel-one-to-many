@@ -13,6 +13,7 @@ class Project extends Model
          'title',
          'content',
          'slug',
+         'type_id',
        
      ];
    

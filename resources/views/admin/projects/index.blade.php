@@ -17,6 +17,7 @@
                 <th scope="col">Titolo</th>
                 <th scope="col">Slug</th>
                 <th scope="col">Azione</th>
+                <th>tipo</th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +26,7 @@
                     <th scope="row">{{ $curProject->id }}</th>
                     <td>{{ $curProject->title }}</td>
                     <td>{{ $curProject->slug }}</td>
+                    <td>{{ $curProject->type->name }}</td>
                     <td> 
                         <a class='btn btn-info' href="{{ route('admin.projects.show',['project'=>$curProject->slug])}}">Dettagli</a> 
                         <a class='btn btn-info' href="{{ route('admin.projects.edit',['project'=>$curProject->slug])}}">modifica</a> 
