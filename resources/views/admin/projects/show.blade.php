@@ -5,6 +5,9 @@
     <h1>{{$project->title}}</h1>
     <p>{{$project->content}}</p>
     <p>Slug: {{$project->slug}}</p>
+    @if($project->type)
+        <p>Tipologia: {{ $project->type->name }}</p>
+    @endif
 
 
 @endsection
